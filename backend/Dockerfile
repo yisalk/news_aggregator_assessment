@@ -18,8 +18,8 @@ RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local
 
 COPY . .
 
-RUN composer install
+RUN composer install --no-interaction --prefer-dist --optimize-autoloader
 
-CMD ["php-fpm"]
+CMD php artisan migrate --force && php-fpm
 
 EXPOSE 9000
